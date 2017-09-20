@@ -15,7 +15,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    //public static final String AMAZON_URL = "https://s3-us-west-2.amazonaws.com/ib.image.";
+    public static final String AMAZON_URL = "https://s3-us-west-2.amazonaws.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        loadProducts();
+        loadProducts("57eec92f072d415b67c24175");
     }
 
-    private void loadProducts(){
+    private void loadProducts(String subcategory_id){
         ApiInterface apiClient = ApiClient.getClient().create(ApiInterface.class);
 
-        Call<ProductsResponse> call = apiClient.getProducts("57eec92f072d415b67c24175");
+        Call<ProductsResponse> call = apiClient.getProducts(subcategory_id);
         call.enqueue(new Callback<ProductsResponse>() {
             @Override
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {

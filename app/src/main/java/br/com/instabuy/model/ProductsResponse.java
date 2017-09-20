@@ -12,23 +12,9 @@ import java.util.List;
 
 public class ProductsResponse implements Serializable {
 
-    @SerializedName("status")
-    @Expose
-    private String status;
     @SerializedName("data")
     @Expose
     private List<Product> data = null;
-    @SerializedName("type")
-    @Expose
-    private String type;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public List<Product> getData() {
         return data;
@@ -38,11 +24,4 @@ public class ProductsResponse implements Serializable {
         this.data = data;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }
