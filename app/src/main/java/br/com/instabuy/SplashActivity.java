@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
-/**
- * Created by Ronan Lima on 10/02/2016.
- */
+
 public class SplashActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();

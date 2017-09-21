@@ -7,13 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.instabuy.adapter.ProductAdapter;
-import br.com.instabuy.model.Product;
 import br.com.instabuy.model.ProductsResponse;
 import br.com.instabuy.retrofit.ApiClient;
 import br.com.instabuy.retrofit.ApiInterface;
@@ -34,14 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         loadProducts("57eec92f072d415b67c24175");
-
-//        toolbar =(Toolbar)findViewById(R.id.toolbar);
-//        toolbar.setVisibility(View.VISIBLE);
-//        toolbar.setTitle(R.string.available_product);
 
         mLayoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
