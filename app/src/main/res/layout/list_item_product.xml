@@ -2,26 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingTop="10dp">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/relative_container"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:background="@android:color/black">
 
         <ImageView
+            android:id="@+id/img"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/product"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:alpha="0.8"/>
+            android:alpha="0.5"/>
 
-        <TextView
+        <LinearLayout
+            android:weightSum="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Nome do produto"/>
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_weight="0.2"
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Product name"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:layout_weight="0.2"
+                android:id="@+id/brand"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Brand name"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                android:layout_marginTop="8dp"/>
+
+            <LinearLayout
+                android:layout_weight="0.6"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:text="R$ 00,00"
+                    android:textColor="@android:color/white"
+                    android:textSize="16dp"
+                    android:layout_gravity="right"
+                    android:padding="5dp"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
 
     </RelativeLayout>
 
