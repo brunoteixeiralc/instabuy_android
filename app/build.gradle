@@ -1,6 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    signingConfigs {
+        release {
+            keyAlias 'instabuy'
+            keyPassword 'instabuy'
+            storeFile file('/Users/brunolemgruber/Dropbox/savingfood/instabuy.jks')
+            storePassword 'instabuy'
+        }
+    }
+
     compileSdkVersion 25
     buildToolsVersion "26.0.1"
     defaultConfig {
@@ -11,10 +21,36 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    flavorDimensions "app"
+
+    productFlavors {
+
+        dev {
+            dimension = "app"
+            minSdkVersion 21
+        }
+        prod {
+            dimension = "app"
+            minSdkVersion 16
+        }
+    }
+
     buildTypes {
+
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+            versionNameSuffix '-DEBUG'
+            resValue "string", "app_name","Instabuy (Debug)"
+        }
+
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            resValue "string", "app_name","Instabuy"
         }
     }
 }

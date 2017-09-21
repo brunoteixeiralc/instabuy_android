@@ -2,9 +2,18 @@ package br.com.instabuy;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.instabuy.adapter.ProductAdapter;
+import br.com.instabuy.model.Product;
 import br.com.instabuy.model.ProductsResponse;
 import br.com.instabuy.retrofit.ApiClient;
 import br.com.instabuy.retrofit.ApiInterface;
@@ -15,16 +24,31 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    public static final String AMAZON_URL = "https://s3-us-west-2.amazonaws.com/";
+
+    protected RecyclerView recyclerView;
+    private LinearLayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         loadProducts("57eec92f072d415b67c24175");
+
+//        toolbar =(Toolbar)findViewById(R.id.toolbar);
+//        toolbar.setVisibility(View.VISIBLE);
+//        toolbar.setTitle(R.string.available_product);
+
+        mLayoutManager = new LinearLayoutManager(MainActivity.this);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setHasFixedSize(true);
+
     }
 
     private void loadProducts(String subcategory_id){
@@ -36,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
                 ProductsResponse products = response.body();
                 Log.e(TAG, products.toString());
+
+                mAdapter = new ProductAdapter(MainActivity.this,products.getData());
+                recyclerView.setAdapter(mAdapter);
 
             }
 
